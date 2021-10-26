@@ -44,8 +44,4 @@ export class ServersComponent implements OnInit {
     console.log(this.clicks);
     
   }
-
-  getColor() {
-    return this.clicks.length >=5 ? 'blue' : 'white';
-  }
 }
