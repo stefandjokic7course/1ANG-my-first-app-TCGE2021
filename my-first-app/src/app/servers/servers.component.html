@@ -47,7 +47,7 @@
 <hr>
 <p 
     *ngFor="let click of clicks; let i = index;"
-    [ngStyle]="{backgroundColor: getColor()}"
+    [ngStyle]="{backgroundColor: i>=5 ? 'blue' : 'white'}"
     [ngClass]="{newStyle: getColor()==='blue' && i>=5}"
     >click number {{clicks[i]}}
 </p>
