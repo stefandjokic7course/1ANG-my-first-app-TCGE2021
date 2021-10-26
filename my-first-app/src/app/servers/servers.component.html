@@ -9,7 +9,11 @@
     class="form-control"
     [(ngModel)]="serverName"
 >
-<p> {{serverName}} </p>
+<p *ngIf="servernameEntered; else: noServer">Entered server name is: {{ serverName }}</p>
+<ng-template #noServer>
+    <p>No server is created</p>
+</ng-template>
+
 <button 
     class="btn btn-primary" 
     [disabled]="!allowNewServer"
@@ -18,18 +22,32 @@
 </button>
 <p>{{ serverCreationStatus }}</p>
 <p [innerText]="allowNewServer"></p>
-<app-server></app-server>
-<app-server></app-server>
+<app-server *ngFor="let server of servers"></app-server>
 <hr>
 <input
     type="text"
     class="form-control"
     [(ngModel)]="username"
 >
-<p>Entered user is: {{ username }}</p>
+<p>Entered username is: {{ username }}</p>
 <button
     class="btn btn-primary"
     [disabled]="username === ''"
     (click)="username = ''"
     >Restart username
 </button>
+
+<hr>
+<button class="btn btn-primary"
+(click)="onDisplayDetails()">Display Details</button>
+<p *ngIf="isSecretPasswordVisible; else: isSecretPassword">tuna</p>
+<ng-template #isSecretPassword><p>
+    Secret password
+</p></ng-template>
+<hr>
+<p 
+    *ngFor="let click of clicks; let i = index;"
+    [ngStyle]="{backgroundColor: getColor()}"
+    [ngClass]="{newStyle: getColor()==='blue' && i>=5}"
+    >click number {{clicks[i]}}
+</p>
